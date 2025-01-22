@@ -1,41 +1,49 @@
-package Javaprogram;
-
-import java.util.Scanner;
-
 public class ArmstrongNumber {
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        int lower = 1, upper = 999; // Set the range (1 to 999)
 
-        // Display the Welcome message
-        System.out.println("Welcome to the check Armstrong Number");
+        // Loop through all numbers in the range
+        for (int num = lower; num <= upper; num++) {
+            int sum = 0, temp, remainder, n = 0;
 
-        // Prompt the user to enter a number
-        System.out.print("Enter a number: ");
-        int num = sc.nextInt();
-        
-        int originalNumber = num;
-        int remainder;
-        int result = 0;
-        int numberOfDigits = String.valueOf(num).length(); // Count the number of digits
+            // Store the number in a temporary variable (temp)
+            temp = num;
 
-        // Check if the number is an Armstrong number
-        while (originalNumber != 0) {
-            remainder = originalNumber % 10;
-            result += Math.pow(remainder, numberOfDigits); // Raise the digit to the power of the number of digits
-            originalNumber /= 10;
+            // Find the number of digits in the given number
+            while (temp != 0) {
+                temp /= 10;
+                ++n;
+            }
+
+            // Reset temp to the original number
+            temp = num;
+
+            // Calculate the sum of the power of the digits
+            while (temp != 0) {
+                remainder = temp % 10; // Get the last digit
+                sum += Math.pow(remainder, n); // Add the power of the digit
+                temp /= 10; // Remove the last digit
+            }
+
+            // If the sum is equal to the original number, it's an Armstrong number
+            if (sum == num) {
+                System.out.println(num + " is an Armstrong number.");
+            }
         }
-
-        if (result == num)
-            System.out.println(num + " is an Armstrong number.");
-        else
-            System.out.println(num + " is not an Armstrong number.");
-
-        sc.close(); // Close the scanner to prevent resource leaks
     }
 }
-/* Output
-Welcome to the check Armstrong Number
-Enter a number: 153
-153 is an Armstrong number.*/
-
-
+/*OUTPUT:-
+1 is an Armstrong number.
+2 is an Armstrong number.  
+3 is an Armstrong number.
+4 is an Armstrong number.
+5 is an Armstrong number.
+6 is an Armstrong number.
+7 is an Armstrong number.
+8 is an Armstrong number.
+9 is an Armstrong number.
+153 is an Armstrong number.
+370 is an Armstrong number.
+371 is an Armstrong number.
+407 is an Armstrong number. */
